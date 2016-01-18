@@ -8,26 +8,50 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+@Component
 public class Dictionary {
 
-	private Map<Language, Map<String, String>> dictionaries = new HashMap<Language, Map<String, String>>();
+    @Autowired
+    ResourceLoader resourceLoader;
 
-	public String translate(String word, Language language) {
-        //TODO: Implement me
-		return null;
-	}
+    private Map<Language, Map<String, String>> dictionaries = new HashMap<Language, Map<String, String>>();
 
-	private Map<String, String> getDictionary(Language language) {
-		Map<String, String> dictionary = dictionaries.get(language);
-		if (null == dictionary) {
-			dictionary = loadDictionary(language);
-			dictionaries.put(language, dictionary);
-		}
-		return dictionary;
-	}
 
-	private Map<String, String> loadDictionary(Language language) {
-        //TODO: Implement me
-        return null;
-	}
+    public String translate(String word, Language language) {
+        String translated = getDictionary(language).get(word);
+        if (translated == null) {
+            return word;
+        }
+        return translated;
+    }
+
+    private Map<String, String> getDictionary(Language language) {
+        Map<String, String> dictionary = dictionaries.get(language);
+        if (null == dictionary) {
+            dictionary = loadDictionary(language);
+            dictionaries.put(language, dictionary);
+        }
+        return dictionary;
+    }
+
+    private Map<String, String> loadDictionary(Language language) {
+        List<String> load = resourceLoader.load("/home/sergei/GeekHub/HomeTaskWeek11/dict/english.dict");
+        Map<String, String> dictionary = new HashMap<String, String>();
+
+        if (language.equals(Language.ENGLISH)) {
+            for (String s : load) {
+                String[] arr = s.split("=");
+                dictionary.put(arr[0], arr[1]);
+            }
+        } else if (language.equals(Language.RUSSIAN)) {
+            for (String s : load) {
+                String[] arr = s.split("=");
+                dictionary.put(arr[1], arr[0]);
+            }
+        } else
+            throw new UnsupportedOperationException();
+
+        return dictionary;
+    }
 }
