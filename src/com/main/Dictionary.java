@@ -2,20 +2,20 @@ package com.main;
 
 import com.lang.Language;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-@Component
+@Repository
 public class Dictionary {
 
     @Autowired
     ResourceLoader resourceLoader;
 
-    private Map<Language, Map<String, String>> dictionaries = new HashMap<Language, Map<String, String>>();
+    private Map<Language, Map<String, String>> dictionaries = new HashMap<>();
 
 
     public String translate(String word, Language language) {
@@ -37,7 +37,7 @@ public class Dictionary {
 
     private Map<String, String> loadDictionary(Language language) {
         List<String> load = resourceLoader.load("/home/sergei/GeekHub/HomeTaskWeek11/dict/english.dict");
-        Map<String, String> dictionary = new HashMap<String, String>();
+        Map<String, String> dictionary = new HashMap<>();
 
         if (language.equals(Language.ENGLISH)) {
             for (String s : load) {

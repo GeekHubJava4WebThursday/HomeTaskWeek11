@@ -3,11 +3,11 @@ package com.main;
 import com.lang.Language;
 import com.lang.LanguageDetector;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 
-@Component
+@Service
 public class Translator {
 
     @Autowired

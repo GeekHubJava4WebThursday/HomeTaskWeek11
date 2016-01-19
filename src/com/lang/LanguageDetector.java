@@ -22,6 +22,7 @@ public class LanguageDetector {
 		return Language.ENGLISH;
 	}
 
+	@PostConstruct
 	private void initMapping() {
 		mapping = new HashMap<Language, List<String>>();
 	}
