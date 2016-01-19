@@ -1,14 +1,32 @@
 package com.main;
 
-import org.springframework.stereotype.Component;
+import com.lang.Language;
+import com.lang.LanguageDetector;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 
+@Service
 public class Translator {
 
+	@Autowired
+	TextSource textSource;
+
+	@Autowired
+	Dictionary dictionary;
+
+	@Autowired
+	LanguageDetector languageDetector;
+
     public String translate(String source) {
-        //TODO: Implement me
-		return null;
+		String text = textSource.getText(source);
+		Language language = languageDetector.detectLanguage(text);
+		String textMas[] = text.split("\\s+");
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < textMas.length; i++){
+			sb.append(dictionary.translate(textMas[i], language) + " ");
+		}
+		return sb.toString();
 	}
 
 }

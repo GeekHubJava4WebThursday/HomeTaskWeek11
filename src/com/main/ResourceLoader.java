@@ -9,13 +9,18 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ResourceLoader {
 
 	public List<String> load(String source) {
-		try {
-			return Files.readAllLines(Paths.get(source), Charset.defaultCharset());
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (Files.exists(Paths.get(source))) {
+			try {
+                return Files.readAllLines(Paths.get(source), Charset.defaultCharset());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+		}else{
+			System.err.println("Dictionary not found!");
 		}
 		return new ArrayList<String>();
 	}
