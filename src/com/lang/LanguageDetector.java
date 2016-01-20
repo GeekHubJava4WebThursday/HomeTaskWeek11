@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class LanguageDetector {
 
 	private Map<Language, List<String>> mapping;
@@ -21,6 +22,6 @@ public class LanguageDetector {
 	}
 
 	private void initMapping() {
-		mapping = new HashMap<Language, List<String>>();
+		mapping = new HashMap<>();
 	}
 }

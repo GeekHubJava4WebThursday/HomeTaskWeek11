@@ -8,13 +8,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class Dictionary {
 
-	private Map<Language, Map<String, String>> dictionaries = new HashMap<Language, Map<String, String>>();
+	@Autowired
+	ResourceLoader resourceLoader;
+
+	private Map<Language, Map<String, String>> dictionaries = new HashMap<>();
 
 	public String translate(String word, Language language) {
-        //TODO: Implement me
-		return null;
+		Map<String, String> dictionary = getDictionary(language);
+		word = word.replaceAll("\\p{Punct}", "");
+		String translation = dictionary.get(word);
+		return translation == null ? word : translation;
+
 	}
 
 	private Map<String, String> getDictionary(Language language) {
@@ -27,7 +34,13 @@ public class Dictionary {
 	}
 
 	private Map<String, String> loadDictionary(Language language) {
-        //TODO: Implement me
-        return null;
+		Map<String, String> dictionary = new HashMap<>();
+		List<String> lines = resourceLoader.load("dict/" + language.name().toLowerCase() + ".dict");
+		for (String line : lines) {
+			String[] words = line.split("=");
+			dictionary.put(words[0], words[1]);
+		}
+
+		return dictionary;
 	}
 }
