@@ -1,11 +1,12 @@
 package com.lang;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class LanguageDetector {
 
 	private Map<Language, List<String>> mapping;
@@ -21,6 +22,6 @@ public class LanguageDetector {
 	}
 
 	private void initMapping() {
-		mapping = new HashMap<Language, List<String>>();
+		mapping = new HashMap<>();
 	}
 }

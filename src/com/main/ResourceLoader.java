@@ -1,6 +1,6 @@
 package com.main;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ResourceLoader {
 
 	public List<String> load(String source) {
@@ -17,6 +18,6 @@ public class ResourceLoader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return new ArrayList<String>();
+		return new ArrayList<>();
 	}
 }
