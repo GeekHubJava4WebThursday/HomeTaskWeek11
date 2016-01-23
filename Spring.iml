@@ -3,23 +3,23 @@
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset1" name="XML Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/application-context.xml</file>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/com/main/AppConfiguration.java</file>
         </fileset>
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="spring-beans-3.2.2.RELEASE" level="project" />
-    <orderEntry type="library" name="spring-core-3.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="commons-logging-1.1.1" level="project" />
-    <orderEntry type="library" name="spring-expression-3.2.2.RELEASE" level="project" />
+    <orderEntry type="library" name="spring-beans-4.2.4.RELEASE" level="project" />
+    <orderEntry type="library" name="spring-core-4.2.4.RELEASE" level="project" />
+    <orderEntry type="library" name="spring-expression-4.2.4.RELEASE" level="project" />
+    <orderEntry type="library" name="spring-aop-4.2.4.RELEASE" level="project" />
   </component>
 </module>
-
