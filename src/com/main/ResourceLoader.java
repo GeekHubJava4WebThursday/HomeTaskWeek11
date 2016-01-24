@@ -9,14 +9,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ResourceLoader {
 
-	public List<String> load(String source) {
-		try {
-			return Files.readAllLines(Paths.get(source), Charset.defaultCharset());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return new ArrayList<String>();
-	}
+    public List<String> load(String source) {
+        try {
+            return Files.readAllLines(Paths.get(source), Charset.defaultCharset());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
 }
