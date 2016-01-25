@@ -7,8 +7,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.*;
-import java.util.regex.Pattern;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 @Component
@@ -16,27 +17,17 @@ public class Dictionary {
 
     private Map<Language, Map<String, String>> dictionaries = new HashMap<>();
 
-    public static final Pattern wordPattern = Pattern.compile("[^a-zA-Z]+", Pattern.DOTALL);
-
-    public String translate(String text, Language language) {
-        Map<String, String> dictionary = getDictionary(language);
-        Set<String> words = Arrays
-                .stream(wordPattern.split(text))
-                .collect(Collectors.toSet());
-        for (String word: words) {
-            String translation = dictionary.get(word.toLowerCase());
-            if (translation != null) {
-                text = text.replaceAll("\\b" + word + "\\b", toCapital(translation, word));
-            }
-        }
-        return text;
+    public String translate(String word, Language language) {
+        String translation = getDictionary(language).get(word.toLowerCase());
+        return toCapital(translation, word);
 	}
 
     private String toCapital(String translation, String origin) {
-        if (origin.length() < 1 || translation.length() < 1) {
-            return origin;
-        }
-        if (translation.length() < 1 || !Character.isUpperCase(origin.charAt(0))) {
+        if ((translation == null)
+                || (origin == null)
+                || (origin.length() < 1)
+                || (translation.length() < 1)
+                || (Character.isLowerCase(origin.charAt(0)))) {
             return translation;
         }
         if (translation.length() == 1) {
